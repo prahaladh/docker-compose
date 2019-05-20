@@ -1,13 +1,13 @@
+<h1>Hello!</h1>
+<h4>Attempting MySQL connection from php...</h4>
 <?php
-$con=mysqli_connect("mysql","root","root");
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-   else {
-    echo "Connected successfully";
-}
-  
-mysqli_close($con);
+$host = 'mysql';
+$user = 'root';
+$pass = 'root';
+$conn = new mysqli($host, $user, $pass);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+echo "Connected to MySQL successfully!";
 ?>
