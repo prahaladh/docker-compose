@@ -11,8 +11,6 @@ if ($conn->connect_error) {
 } 
 echo "Connected to MySQL successfully!";
 
-or die ( " Not able to connect to server ");
-
 $query="CREATE DATABASE IF NOT EXISTS my_db";
 if (mysqli_query("$query")) {
 print ("Database created successfully <br>");
