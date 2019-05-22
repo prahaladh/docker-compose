@@ -17,8 +17,6 @@ print ("Database created successfully <br>");
 } else {
 print ("Error in creating  database: <br><br>". mysqli_error ());
 }
-?>
-
 $dbname='my_db';
 // Create connection
 $conn = new mysqli($host, $user, $pass, $dbname);
