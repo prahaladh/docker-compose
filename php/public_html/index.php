@@ -11,19 +11,16 @@ if ($conn->connect_error) {
 } 
 echo "Connected to MySQL successfully!";
 
-// Make my_db the current database
-$db_selected = mysqli_select_db('my_db', $conn);
+or die ( " Not able to connect to server ");
 
-if (!$db_selected) {
-  // If we couldn't, then it either doesn't exist, or we can't see it.
-  $sql = 'CREATE DATABASE my_db';
-
-  if (mysqli_query($sql, $conn)) {
-      echo "Database my_db created successfully\n";
-  } else {
-      echo 'Error creating database: ' . mysqli_error() . "\n";
-  }
+$query="CREATE DATABASE IF NOT EXISTS my_db";
+if (mysqli_query("$query")) {
+print ("Database created successfully <br>");
+} else {
+print ("Error in creating  database: <br><br>". mysqli_error ());
 }
+?>
+
 $dbname='my_db';
 // Create connection
 $conn = new mysqli($host, $user, $pass, $dbname);
