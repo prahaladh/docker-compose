@@ -18,7 +18,7 @@ if (!$db_selected) {
   // If we couldn't, then it either doesn't exist, or we can't see it.
   $sql = 'CREATE DATABASE my_db';
 
-  if (mysql_query($sql, $conn)) {
+  if (mysqli_query($sql, $conn)) {
       echo "Database my_db created successfully\n";
   } else {
       echo 'Error creating database: ' . mysql_error() . "\n";
