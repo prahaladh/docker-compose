@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 echo "Connected to MySQL successfully!";
 
 // Make my_db the current database
-$db_selected = mysql_select_db('my_db', $conn);
+$db_selected = mysqli_select_db('my_db', $conn);
 
 if (!$db_selected) {
   // If we couldn't, then it either doesn't exist, or we can't see it.
