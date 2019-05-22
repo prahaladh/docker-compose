@@ -11,14 +11,20 @@ if ($conn->connect_error) {
 } 
 echo "Connected to MySQL successfully!";
 
-$sql = "CREATE DATABASE myDB";
-if ($conn->query($sql) === TRUE) {
-    echo "Database created successfully";
-} else {
-    echo "Error creating database: " . $conn->error;
-}
+// Make my_db the current database
+$db_selected = mysql_select_db('my_db', $conn);
 
-$dbname='myDB';
+if (!$db_selected) {
+  // If we couldn't, then it either doesn't exist, or we can't see it.
+  $sql = 'CREATE DATABASE my_db';
+
+  if (mysql_query($sql, $conn)) {
+      echo "Database my_db created successfully\n";
+  } else {
+      echo 'Error creating database: ' . mysql_error() . "\n";
+  }
+}
+$dbname='my_db';
 // Create connection
 $conn = new mysqli($host, $user, $pass, $dbname);
 // Check connection
@@ -27,16 +33,35 @@ if ($conn->connect_error) {
 } 
 
 // sql to create table
-$sql = "CREATE TABLE MyGuests (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-firstname VARCHAR(30) NOT NULL,
-lastname VARCHAR(30) NOT NULL,
-email VARCHAR(50)
+$sql = "CREATE TABLE IF NOT EXISTS `USERS` (
+    `ID` int(11) unsigned NOT NULL auto_increment,
+    `NAME` varchar(255) NOT NULL default '',
+    `AGE` int(10) NOT NULL default ''
 )";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Table MyGuests created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
+if(!$conn->query($sql)){
+    echo "Table creation failed: (" . $conn->errno . ") " . $conn->error;
 }
+// Attempt insert query execution
+$sql = "INSERT INTO USERS (NAME, AGE) VALUES
+            ('Rambo', '21'),
+            ('Clark',  '22'),
+            ('John', '23'),
+            ('Harry', , '24')";
+if(mysqli_query($link, $sql)){
+    echo "Records added successfully.";
+} else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+}
+$sql = "SELECT * FROM USERS";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["NAME"]. " AGE:" . $row["AGE"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
 ?>
