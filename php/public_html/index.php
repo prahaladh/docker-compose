@@ -21,7 +21,7 @@ if (!$db_selected) {
   if (mysqli_query($sql, $conn)) {
       echo "Database my_db created successfully\n";
   } else {
-      echo 'Error creating database: ' . mysql_error() . "\n";
+      echo 'Error creating database: ' . mysqli_error() . "\n";
   }
 }
 $dbname='my_db';
