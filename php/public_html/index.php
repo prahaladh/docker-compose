@@ -25,18 +25,18 @@ if ($conn->connect_error) {
 // sql to create table
 $sql = "CREATE TABLE IF NOT EXISTS `USERS` (
     `ID` int(11) NOT NULL,
-    `NAME` varchar(255) NOT NULL default '',
-    `AGE` int(10) NOT NULL default ''
+    `NAME` varchar(255),
+    `AGE` int(10)
 )";
 if(!$conn->query($sql)){
     echo "Table creation failed: (" . $conn->errno . ") " . $conn->error;
 }
 // Attempt insert query execution
 $sql = "INSERT INTO USERS (NAME, AGE) VALUES
-            ('1','Rambo','21'),
-            ('2','Clark','22'),
-            ('3','John','23'),
-            ('4','Harry','24')";
+            (1,'Rambo',21),
+            (2,'Clark',22),
+            (3,'John',23),
+            (4,'Harry',24)";
 if(mysqli_query($conn, $sql)){
     echo "Records added successfully.";
 } else{
