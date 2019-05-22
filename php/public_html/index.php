@@ -24,7 +24,7 @@ if ($conn->connect_error) {
 } 
 // sql to create table
 $sql = "CREATE TABLE IF NOT EXISTS `USERS` (
-    `ID` int(11) unsigned NOT NULL auto_increment,
+    `ID` int(11) NOT NULL,
     `NAME` varchar(255) NOT NULL default '',
     `AGE` int(10) NOT NULL default ''
 )";
@@ -33,10 +33,10 @@ if(!$conn->query($sql)){
 }
 // Attempt insert query execution
 $sql = "INSERT INTO USERS (NAME, AGE) VALUES
-            ('Rambo', '21'),
-            ('Clark',  '22'),
-            ('John', '23'),
-            ('Harry', , '24')";
+            ('1','Rambo','21'),
+            ('2','Clark','22'),
+            ('3','John','23'),
+            ('4','Harry','24')";
 if(mysqli_query($conn, $sql)){
     echo "Records added successfully.";
 } else{
