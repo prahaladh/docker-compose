@@ -32,7 +32,7 @@ if(!$conn->query($sql)){
     echo "Table creation failed: (" . $conn->errno . ") " . $conn->error;
 }
 // Attempt insert query execution
-$sql = "INSERT INTO USERS (NAME, AGE) VALUES
+$sql = "INSERT INTO USERS (ID,NAME, AGE) VALUES
             (1,'Rambo',21),
             (2,'Clark',22),
             (3,'John',23),
