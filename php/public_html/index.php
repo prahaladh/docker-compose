@@ -8,19 +8,19 @@ $conn = new mysqli($host, $user, $pass);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-echo "Connected to MySQL successfully!";
+echo "\n\nConnected to MySQL successfully!\n\n";
 
 // sql to create DB
 $sql = "CREATE DATABASE IF NOT EXISTS my_db";
 if(!$conn->query($sql)){
-    echo "DB creation failed: (" . $conn->errno . ") " . $conn->error;
+    echo "\n\nDB creation failed: (" . $conn->errno . ") \n\n" . $conn->error;
 }
 $dbname='my_db';
 // Create connection
 $conn = new mysqli($host, $user, $pass, $dbname);
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("\n\nConnection failed: \n\n" . $conn->connect_error);
 } 
 // sql to create table
 $sql = "CREATE TABLE IF NOT EXISTS `USERS` (
@@ -29,7 +29,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `USERS` (
     `AGE` int(10)
 )";
 if(!$conn->query($sql)){
-    echo "Table creation failed: (" . $conn->errno . ") " . $conn->error;
+    echo "\n\nTable creation failed: (" . $conn->errno . ")\n\n " . $conn->error;
 }
 // Attempt insert query execution
 $sql = "INSERT INTO USERS (ID,NAME, AGE) VALUES
@@ -38,19 +38,19 @@ $sql = "INSERT INTO USERS (ID,NAME, AGE) VALUES
             (3,'John',23),
             (4,'Harry',24)";
 if(mysqli_query($conn, $sql)){
-    echo "Records added successfully.";
+    echo "\n\nRecords added successfully.\n\n";
 } else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+    echo "\n\nERROR: Could not able to execute $sql. \n\n" . mysqli_error($conn);
 }
 $sql = "SELECT * FROM USERS";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["ID"]. " - Name: " . $row["NAME"]. " AGE:" . $row["AGE"]. "<br>";
+        echo "\n\n\n\nid: " . $row["ID"]. " - Name: " . $row["NAME"]. " AGE:" . $row["AGE"]. "<br>\n\n\n\n";
     }
 } else {
-    echo "0 results";
+    echo "\n\n0 results\n\n";
 }
 $conn->close();
 ?>
